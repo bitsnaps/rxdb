@@ -9,10 +9,11 @@ tasks:
   - init: |
       cd rxdb
       npm install
-      npm install
+      npm run build
       cd examples/vue
       npm run preinstall
       npm install
+      echo "module.exports = { devServer: { disableHostCheck: true } }" > vue.config.js
     command: |
       npm start
   - command: gp await-port 8080 && gp preview "$(gp url 8080)/"
