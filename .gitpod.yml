@@ -6,13 +6,13 @@ ports:
   onOpen: open-preview
 
 tasks:
-- before: >
-    echo "starting..."
-  init: >
-    cd rxdb
-    npm install
-    npm run build
-    cd examples/vue
-    npm run preinstall && npm install
-  command: >
-    npm start
+  - init: |
+      cd rxdb
+      npm install
+      npm install
+      cd examples/vue
+      npm run preinstall
+      npm install
+    command: |
+      npm start
+  - command: gp await-port 8080 && gp preview "$(gp url 8080)/"
